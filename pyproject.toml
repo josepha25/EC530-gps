@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+testpaths = ["."]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["matcher"]
+
+[tool.coverage.report]
+show_missing = true
