@@ -52,19 +52,22 @@ def find_closest(point, pool):
     return best, best_dist
 
 
-def match_arrays(list1, list2):
-    if not list1:
-        raise ValueError("list1 must not be empty.")
-    if not list2:
-        raise ValueError("list2 must not be empty.")
+if __name__ == "__main__":
+    import csv
+
+    with open("points_a.csv", newline="") as f:
+        list1 = [(row["lat"], row["lon"]) for row in csv.DictReader(f)]
+
+    with open("points_b.csv", newline="") as f:
+        list2 = [(row["lat"], row["lon"]) for row in csv.DictReader(f)]
 
     results = []
     for point in list1:
         closest, dist = find_closest(point, list2)
-        results.append({
-            "point": point,
-            "closest": closest,
-            "distance_km": dist,
-        })
+        print(f"({point[0]}, {point[1]}) -> ({closest[0]}, {closest[1]}) | {dist:.2f} km")
+        results.append([point[0], point[1], closest[0], closest[1], round(dist, 4)])
 
-    return results
+    with open("matches.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["lat1", "lon1", "lat2", "lon2", "distance_km"])
+        writer.writerows(results)
