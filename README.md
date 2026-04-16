@@ -11,19 +11,11 @@
 
 ## What this program does
 
-This program takes two lists of GPS locations and, for each point in `points_a.csv`,
+This program takes two lists of GPS locations and for each point in `points_a.csv`,
 finds the closest point in `points_b.csv` using the Haversine distance formula.
 
 ## How to run
 
-Make sure all files are in the same folder:
-
-```
-gps/
-├── matcher.py
-├── points_a.csv
-└── points_b.csv
-```
 
 Run the script from the folder:
 
