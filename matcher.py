@@ -1,7 +1,9 @@
 import logging
 import math
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
+)
 log = logging.getLogger(__name__)
 
 
@@ -31,7 +33,10 @@ def distance_km(p1, p2):
     dphi = math.radians(lat2 - lat1)
     dlam = math.radians(lon2 - lon1)
 
-    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlam / 2) ** 2
+    a = (
+        math.sin(dphi / 2) ** 2
+        + math.cos(phi1) * math.cos(phi2) * math.sin(dlam / 2) ** 2
+    )
     return 2 * R * math.asin(math.sqrt(a))
 
 
@@ -64,8 +69,13 @@ if __name__ == "__main__":
     results = []
     for point in list1:
         closest, dist = find_closest(point, list2)
-        print(f"({point[0]}, {point[1]}) -> ({closest[0]}, {closest[1]}) | {dist:.2f} km")
-        results.append([point[0], point[1], closest[0], closest[1], round(dist, 4)])
+        print(
+            f"({point[0]}, {point[1]}) -> "
+            f"({closest[0]}, {closest[1]}) | {dist:.2f} km"
+        )
+        results.append(
+            [point[0], point[1], closest[0], closest[1], round(dist, 4)]
+        )
 
     with open("matches.csv", "w", newline="") as f:
         writer = csv.writer(f)

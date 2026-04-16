@@ -101,5 +101,3 @@ def test_find_single_point_in_pool():
 def test_find_empty_pool_raises():
     with pytest.raises(ValueError):
         find_closest((0, 0), [])
-
-
